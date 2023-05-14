@@ -5,14 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake game</title>
-    <style>
-        #canvasGame{
-            border: 1px solid black;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <canvas id="canvasGame" width="400" height="400"></canvas>
+    <div class="container">
+        <h1>Snake Game </h1>
+        <canvas id="canvasGame" width="549" height="800"></canvas>
+        <div class="toggle-container">
+            <label for="toggle-mode">Modo Noturno: </label>
+            <input type="checkbox" id="toggle-mode">
+        </div>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>

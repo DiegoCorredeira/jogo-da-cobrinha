@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
             snake.pop()
         }
 
-        // Se a cobrinha atingir as laterais, resetar o jogo
         // colisao
         if(head.x < 0 || head.x >= grid || head.y < 0 || head.y >= grid || checkCollision(head)){
             endGame()
@@ -76,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
     function endGame(){
-        alert("Game over! Pontuação: " + score)
+        // alert("Game over! Pontuação: " + score)
         snake = [ 
             {x: 10, y: 10},
             {x: 9, y:10},
@@ -102,3 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 update()
 })
+
+
+document.getElementById('toggle-mode').addEventListener('change', function () {
+    document.body.classList.toggle( 'darkmode')
+})
+
+  
