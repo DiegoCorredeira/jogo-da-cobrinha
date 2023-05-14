@@ -88,7 +88,7 @@ h1{
     }
     #leftButton{
         background-color: #FF9000;
-        left: calc(100% - 100px);
+        left: calc(85% - 100px);
         top: 623px;
         padding: 20px;
         border-radius: 5px;
@@ -96,7 +96,7 @@ h1{
     }
     #rightButton{
         background-color: #4CAF50;
-        left: calc(85% - 100px);
+        left: calc(100% - 100px);
         top: 623px;
         padding: 20px;
         border-radius: 5px;
