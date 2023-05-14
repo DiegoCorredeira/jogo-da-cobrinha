@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let direction = 'right'
 
+    let score = 0 
+    let gameSpeed = 200
+
     function update(){
         const head = {x: snake[0].x, y: snake[0].y}
 
@@ -31,44 +34,58 @@ document.addEventListener('DOMContentLoaded', () => {
         if (head.x === food.x && head.y === food.y){
             food.x = Math.floor(Math.random() * grid )
             food.y = Math.floor(Math.random() * grid )
+
+            score++
+            if(score % 5 === 0){
+                gameSpeed -= 10
+            }
         }else{
             snake.pop()
         }
 
         // Se a cobrinha atingir as laterais, resetar o jogo
-
-        if(head.x < 0 || head.x >= grid || head.y < 0 || head.y >= grid){
-            snake = [ 
-                {x: 10, y: 10},
-                {x: 9, y:10},
-                {x: 8, y:10}
-            ];
-            direction = 'right'
+        // colisao
+        if(head.x < 0 || head.x >= grid || head.y < 0 || head.y >= grid || checkCollision(head)){
+            endGame()
+            return
         }
-        for (let i = 1; i < snake.length; i++) {
-            if (snake[i].x === head.x && snake[i].y === head.y){
-                snake = [ 
-                    {x: 10, y: 10},
-                    {x: 9, y:10},
-                    {x: 8, y:10}
-                ];
-                direction = 'right'
-                break
-            }
-        }
-
         context.clearRect(0, 0, canvas.width, canvas.height)
 
         for (let i = 0; i < snake.length; i++) {
-            context.fillStyle = "#00000"
+            context.fillStyle = "#000000"
             context.fillRect(snake[i].x * cell,snake[i].y * cell, cell, cell )
         }
 
         context.fillStyle = "#483D8B"
         context.fillRect(food.x * cell,food.y * cell, cell, cell)
 
-        setTimeout(update, 150)
+        context.font = '20px Verdana'
+        context.fillText('Pontuação ' + score, 10, 30)
 
+        setTimeout(update, gameSpeed)
+
+    }
+
+    function checkCollision(head){
+        for (let i = 1; i< snake.length; i++){
+            if (head.x === snake[i].x && head.y === snake[i].y){
+                return true
+            }
+        }
+        return false
+        
+    }
+    function endGame(){
+        alert("Game over! Pontuação: " + score)
+        snake = [ 
+            {x: 10, y: 10},
+            {x: 9, y:10},
+            {x: 8, y:10}
+        ];
+        direction = 'right'
+        score = 0
+        gameSpeed = 200
+        update()
     }
 
     document.addEventListener('keydown', (e)=>{
