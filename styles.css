@@ -59,3 +59,48 @@ h1{
     margin-top: 20px;
     border: 1px solid black;
 }
+
+
+
+@media (max-width: 600px){
+    button{
+        position: absolute;
+        margin: 10px;
+        font-weight: bolder;
+        font-size: 20px;
+    }
+    #upButton{
+        background-color: rgba(244, 67, 54, 0.774);
+        top: 550px;
+        left: calc(93% - 100px);
+        padding: 20px;
+        border-radius: 5px;
+        color: white;
+
+    }
+    #downButton{
+    background-color: #008CBA;
+        top: 700px;
+       left: calc(93% - 100px);
+       padding: 20px;
+       border-radius: 5px;
+       color: white;
+    }
+    #leftButton{
+        background-color: #FF9000;
+        left: calc(100% - 100px);
+        top: 623px;
+        padding: 20px;
+        border-radius: 5px;
+        color: white;
+    }
+    #rightButton{
+        background-color: #4CAF50;
+        left: calc(85% - 100px);
+        top: 623px;
+        padding: 20px;
+        border-radius: 5px;
+        color: white;
+    }
+
+}

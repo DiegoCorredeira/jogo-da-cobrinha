@@ -2,12 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('canvasGame')
     const context = canvas.getContext('2d')
 
-
     const grid = 20
     const cell = canvas.width / grid
 
+    function adjustCanvastoScreen(){
+        const screenWidth = window.innerWidth || document.documentElement.clientWidth
+        const canvaSize = Math.min(screenWidth,600)
 
-    let snake = [ 
+        canvas.width = canvaSize
+        canvas.height = canvaSize
+    }
+    adjustCanvastoScreen();
+    window.addEventListener('resize', adjustCanvastoScreen)
+    let snake  = [ 
         {x: 10, y: 10},
         {x: 9, y:10},
         {x: 8, y:10}
@@ -75,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
     function endGame(){
-        alert("Game over! Pontuação: " + score)
+        // alert("Game over! Pontuação: " + score)
         snake = [ 
             {x: 10, y: 10},
             {x: 9, y:10},
@@ -86,6 +93,37 @@ document.addEventListener('DOMContentLoaded', () => {
         gameSpeed = 200
         update()
     }
+
+    function changeDirection(dir) {
+        if (
+            (dir === 'up' && direction !== 'down') ||
+            (dir === 'down' && direction !== 'up') ||
+            (dir === 'left' && direction !== 'right') ||
+            (dir === 'right' && direction !== 'left')
+        ) {
+            direction = dir;
+        }
+    }
+
+    const upButton = document.getElementById('upButton');
+    const downButton = document.getElementById('downButton');
+    const leftButton = document.getElementById('leftButton');
+    const rightButton = document.getElementById('rightButton');
+
+    upButton.addEventListener('click', () => {
+        changeDirection('up');
+    });
+    downButton.addEventListener('click', () => {
+        changeDirection('down');
+    });
+    leftButton.addEventListener('click', () => {
+        changeDirection('left');
+    });
+    rightButton.addEventListener('click', () => {
+        changeDirection('right');
+    });
+
+    
 
     document.addEventListener('keydown', (e)=>{
         if(e.key === 'ArrowUp' && direction !== 'down'){
