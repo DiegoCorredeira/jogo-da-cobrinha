@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const context = canvas.getContext('2d')
 
 
-    // A cada vez que a cobra comer, mudar a posicao da bomba
+  // Se a cobra estiver maior que 20 pontos, adiciona mais uma bomba ao mapa e assim por diante.
     const grid = 20
     const board = emptyBoard()
     let cell 
@@ -200,8 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        context.fillStyle = "#333333"
-        context.fillRect(food.x * cell,food.y * cell, cell, cell)
+        const foodImage = new Image()
+        foodImage.src = 'comida.png'
+        context.drawImage(foodImage,food.x * cell,food.y * cell, cell, cell)
 
         context.font = '20px Verdana'
         context.fillText('Pontuação ' + score, 10, 30)
