@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('canvasGame')
     const context = canvas.getContext('2d')
 
-
   // Se a cobra estiver maior que 20 pontos, adiciona mais uma bomba ao mapa e assim por diante.
     const grid = 20
     const board = emptyBoard()
@@ -12,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let direction 
     let score 
     let gameSpeed 
-
-
+    
     function emptyBoard() {
         const board = []
         for (let i = 0; i < grid; i++){
@@ -245,10 +243,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
     function darkmode() {
-        document.body.classList.toggle( 'darkmode') 
+        document.body.classList.toggle('darkmode') 
     }
+    
     initilize()
-    console.log(snake)
 })
 
 
