@@ -3,15 +3,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const context = canvas.getContext('2d')
 
     const grid = 20
-    const cell = canvas.width / grid
+    let cell 
 
-    function adjustCanvastoScreen(){
-        const screenWidth = window.innerWidth 
-        const canvaSize = window.innerHeight
-
-        canvas.style.width = (screenWidth * 0.9) + 'px'
-        canvas.style.height = 'auto'
-    }
+    function adjustCanvastoScreen() {
+        const screenWidth = window.innerWidth;
+        const canvaSize = window.innerHeight;
+      
+        const gridSize = Math.floor(Math.min(screenWidth, canvaSize) * 0.9);
+        canvas.width = gridSize;
+        canvas.height = gridSize;
+      
+        cell = gridSize / grid;
+      }
+      
     adjustCanvastoScreen();
     window.addEventListener('resize', adjustCanvastoScreen)
     let snake  = [ 
