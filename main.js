@@ -37,11 +37,31 @@ document.addEventListener('DOMContentLoaded', () => {
     function update(){
         const head = {x: snake[0].x, y: snake[0].y}
 
-        if (direction === 'right') head.x++
-        else if (direction === 'left') head.x--
-        else if (direction === 'up') head.y--
-        else if (direction === 'down') head.y++
+        if (direction === 'right'){
+            head.x++
+            if (head.x >= grid){
+                head.x = 0
+            }
+        }
+        else if (direction === 'left'){
+            head.x--
+            if (head.x < 0){
+                head.x = grid - 1
+            }
 
+        } 
+        else if (direction === 'up'){
+            head.y--
+            if (head.y < 0){
+                head.y = grid - 1
+            }
+        } 
+        else if (direction === 'down'){
+            head.y++
+            if (head.y >= grid){
+                head.y = 0
+            }
+        }
         snake.unshift(head)
 
 
@@ -57,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             snake.pop()
         }
 
-        // colisao
+        // colisao da cabeça
         if(head.x < 0 || head.x >= grid || head.y < 0 || head.y >= grid || checkCollision(head)){
             endGame()
             return
