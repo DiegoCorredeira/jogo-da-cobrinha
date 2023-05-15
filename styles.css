@@ -12,7 +12,7 @@ html, body{
   
   .toggle-container label {
     display: inline-block;
-    width: 205px;
+    width: 120px;
     height: 15px;
     background-color: #333333;
     border-radius: 5px;
