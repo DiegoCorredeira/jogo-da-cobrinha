@@ -2,13 +2,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('canvasGame')
     const context = canvas.getContext('2d')
 
+
+    // A cada vez que a cobra comer, mudar a posicao da bomba
     const grid = 20
+    const board = emptyBoard()
     let cell 
     let snake
     let food 
     let direction 
     let score 
     let gameSpeed 
+
+
+    function emptyBoard() {
+        const board = []
+        for (let i = 0; i < grid; i++){
+            board[i] = []
+            for (let j = 0; j < grid; j++){
+                board[i][j] = false
+            }
+        }
+        return board
+    }
+
+    function addObstacle() {
+        let x 
+        let y 
+        do {
+            x = Math.floor(Math.random() * grid)
+            y = Math.floor(Math.random() * grid) 
+        } while(board[x][y])
+        board[x][y] = true
+    }
+
+    
+    function moveObstacle() {
+        let moveToX;
+        let moveToY;
+      
+        do {
+          moveToX = Math.floor(Math.random() * grid);
+          moveToY = Math.floor(Math.random() * grid);
+        } while (moveToX === food.x && moveToY === food.y);
+      
+        // Remover o obstáculo da posição atual
+        for (let i = 0; i < grid; i++) {
+          for (let j = 0; j < grid; j++) {
+            if (board[i][j]) {
+              board[i][j] = false;
+              break;
+            }
+          }
+        }
+      
+        // Mover o obstáculo para a nova posição
+        board[moveToX][moveToY] = true;
+      }
+      
+      
+    addObstacle()
 
     function adjustCanvastoScreen() {
         const screenWidth = window.innerWidth;
@@ -33,6 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
         score = 0 
         update()
     }
+
+
     
     function update(){
         const head = {x: snake[0].x, y: snake[0].y}
@@ -66,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         if (head.x === food.x && head.y === food.y){
+            moveObstacle()
             food.x = Math.floor(Math.random() * grid )
             food.y = Math.floor(Math.random() * grid )
 
@@ -93,10 +148,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 return true
             }
         }
+        if (board[head.x][head.y]) {
+            return true
+            
+        }
+
         return false
         
     }
     function endGame(){
+        alert('Game Over!')
         snake = [ 
             {x: 10, y: 10},
             {x: 9, y:10},
@@ -126,13 +187,26 @@ document.addEventListener('DOMContentLoaded', () => {
             context.fillRect(snake[i].x * cell,snake[i].y * cell, cell, cell )
         }
 
+
+        for(let x = 0; x < grid; x++){
+            for (let y = 0; y < grid; y++) {
+                if(board[x][y]){
+                    const obstacleImg = new Image()
+                    obstacleImg.src = 'bomba_em_png.png'
+
+                    context.drawImage(obstacleImg, x* cell, y*cell, cell, cell)
+                }
+                
+            }
+        }
+
         context.fillStyle = "#333333"
         context.fillRect(food.x * cell,food.y * cell, cell, cell)
 
         context.font = '20px Verdana'
         context.fillText('Pontuação ' + score, 10, 30)
     }
-    function haldleInput(e) {
+    function handleInput(e) {
         if(e.key === 'ArrowUp' && direction !== 'down'){
             direction = 'up'
         }else if(e.key === 'ArrowDown' && direction !== 'up'){
@@ -147,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function initilize(){
         adjustCanvastoScreen();
         window.addEventListener('resize', adjustCanvastoScreen)
-        document.addEventListener('keydown', haldleInput)
+        document.addEventListener('keydown', handleInput)
         const upButton = document.getElementById('upButton');
         const downButton = document.getElementById('downButton');
         const leftButton = document.getElementById('leftButton');
@@ -173,6 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle( 'darkmode') 
     }
     initilize()
+    console.log(snake)
 })
 
 
