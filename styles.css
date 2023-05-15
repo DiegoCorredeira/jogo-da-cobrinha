@@ -73,7 +73,7 @@ h1 {
     }
     #upButton{
         background-color: rgba(244, 67, 54, 0.774);
-        top: 550px;
+        top: 590px;
         left: calc(93% - 100px);
         padding: 20px;
         border-radius: 10px;
@@ -83,7 +83,7 @@ h1 {
     }
     #downButton{
     background-color: #008CBA;
-        top: 700px;
+        top: 760px;
        left: calc(93% - 100px);
        padding: 20px;
        border-radius: 10px;
@@ -92,16 +92,16 @@ h1 {
     #leftButton{
         background-color: #FF9000;
         z-index: 999;
-        left: calc(85% - 100px);
-        top: 623px;
+        left: calc(80% - 100px);
+        top: 675px;
         padding: 20px;
         border-radius: 10px;
         color: white;
     }
     #rightButton{
         background-color: #4CAF50;
-        left: calc(100% - 100px);
-        top: 623px;
+        left: calc(105% - 100px);
+        top: 675px;
         padding: 20px;
         border-radius: 10px;
         color: white;

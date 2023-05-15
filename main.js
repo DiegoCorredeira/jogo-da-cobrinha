@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const cell = canvas.width / grid
 
     function adjustCanvastoScreen(){
-        const screenWidth = window.innerWidth || document.documentElement.clientWidth
-        const canvaSize = Math.min(screenWidth,600)
+        const screenWidth = window.innerWidth 
+        const canvaSize = window.innerHeight
 
-        canvas.width = canvaSize
-        canvas.height = canvaSize
+        canvas.style.width = (screenWidth * 0.9) + 'px'
+        canvas.style.height = 'auto'
     }
     adjustCanvastoScreen();
     window.addEventListener('resize', adjustCanvastoScreen)
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             context.fillRect(snake[i].x * cell,snake[i].y * cell, cell, cell )
         }
 
-        context.fillStyle = "#483D8B"
+        context.fillStyle = "#333333"
         context.fillRect(food.x * cell,food.y * cell, cell, cell)
 
         context.font = '20px Verdana'
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
     function endGame(){
-        alert("Game over! Pontuação: " + score)
+        // alert("Game over! Pontuação: " + score)
         snake = [ 
             {x: 10, y: 10},
             {x: 9, y:10},
