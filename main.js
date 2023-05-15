@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function adjustCanvastoScreen(){
         const screenWidth = window.innerWidth || document.documentElement.clientWidth
-        const canvaSize = Math.min(screenWidth,400)
+        const canvaSize = Math.min(screenWidth,550)
 
         canvas.width = canvaSize
         canvas.height = canvaSize
