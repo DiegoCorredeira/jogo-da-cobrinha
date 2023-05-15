@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
     function endGame(){
-        alert("Game over! Pontuação: " + score)
+       
         snake = [ 
             {x: 10, y: 10},
             {x: 9, y:10},
